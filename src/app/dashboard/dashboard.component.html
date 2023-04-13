@@ -1,0 +1,57 @@
+<mat-drawer-container class="example-container" autosize>
+  <!-- SIDEBAR -->
+
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <h2 [innerHTML]="'Secciones' | titleSize:20"></h2>
+    <ul *ngIf="showFiller">
+      <mat-list role="list">
+        <mat-list-item role="listitem"><a href="#">Alumnos</a></mat-list-item>
+        <mat-list-item role="listitem"><a href="#">Clases</a></mat-list-item>
+        <mat-list-item role="listitem"><a href="#">Cursos</a></mat-list-item>
+      </mat-list>
+    </ul>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      <span>{{ !showFiller ? "Mostrar secciones" : "Ocultar secciones" }}</span>
+    </button>
+  </mat-drawer>
+
+  <!-- WRAPPER -->
+
+  <div class="example-sidenav-content">
+    <!-- TOOLBAR -->
+
+    <mat-toolbar color="accent" class="relative">
+      <button
+        mat-icon-button
+        type="button"
+        (click)="drawer.toggle()"
+        class="display-sidenav-icon"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="absolute right-0 pr-5">Primera Entrega de Proyecto Final</span>
+      <!-- <span class="example-spacer"></span>
+      <button
+        mat-icon-button
+        class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with share icon"
+      >
+        <mat-icon>share</mat-icon>
+      </button> -->
+    </mat-toolbar>
+
+    <!-- MAIN -->
+    <main>
+      <app-formularios></app-formularios>
+      <!-- <app-tablas></app-tablas> -->
+    </main>
+  </div>
+</mat-drawer-container>
