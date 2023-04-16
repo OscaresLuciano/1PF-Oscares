@@ -11,6 +11,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
+import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 
 
 
@@ -28,7 +29,8 @@ import { PipesModule } from 'src/app/shared/pipes/pipes.module';
     MatTableModule,
     MatCardModule,
     MatButtonModule,
-    PipesModule
+    PipesModule,
+    DirectivesModule
   ],
   exports: [
     FormulariosComponent

@@ -2,7 +2,7 @@
   <!-- SIDEBAR -->
 
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <h2 [innerHTML]="'Secciones' | titleSize:20"></h2>
+    <p [appTitleFontSize]="20">Secciones</p>
     <ul *ngIf="showFiller">
       <mat-list role="list">
         <mat-list-item role="listitem"><a href="#">Alumnos</a></mat-list-item>

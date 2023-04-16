@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { FormulariosModule } from '../pages/formularios/formularios.module';
 import { PipesModule } from '../shared/pipes/pipes.module';
+import { DirectivesModule } from '../shared/directives/directives.module';
 
 
 
@@ -23,7 +24,8 @@ import { PipesModule } from '../shared/pipes/pipes.module';
     MatButtonModule,
     MatListModule,
     FormulariosModule,
-    PipesModule
+    PipesModule,
+    DirectivesModule
   ],
   exports: [
     DashboardComponent
