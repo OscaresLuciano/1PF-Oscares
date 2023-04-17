@@ -12,13 +12,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
+import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
 
 @NgModule({
   declarations: [
-    FormulariosComponent
+    FormulariosComponent,
+    AbmAlumnosComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +33,8 @@ import { DirectivesModule } from 'src/app/shared/directives/directives.module';
     MatCardModule,
     MatButtonModule,
     PipesModule,
-    DirectivesModule
+    DirectivesModule,
+    MatDialogModule
   ],
   exports: [
     FormulariosComponent

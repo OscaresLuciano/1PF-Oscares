@@ -1,6 +1,7 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 
 export interface Alumno {
   nombre: string;
@@ -14,55 +15,38 @@ export interface Alumno {
   templateUrl: './formularios.component.html',
   styleUrls: ['./formularios.component.scss'],
 })
-export class FormulariosComponent {
-  registerForm: FormGroup;
-
-  constructor(public formBuilder: FormBuilder) {
-    this.registerForm = this.formBuilder.group({
-      nombre: this.nombreControl,
-      apellido: this.apellidoControl,
-      email: this.emailControl,
-      nota: this.notaControl,
-    });
-  }
-
-  nombreControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3),
-    Validators.maxLength(10)
-  ]);
-
-  apellidoControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3),
-    Validators.maxLength(10)
-  ]);
-
-  emailControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-    Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
-  ]);
-
-  notaControl = new FormControl('', [
-    Validators.required,
-    Validators.min(0),
-    Validators.max(10)
-  ]);
+export class FormulariosComponent {  
   
-  alumnos: Alumno[] = [];
+  alumnos: Alumno[] = [
+    {
+      nombre: 'Juan',
+      apellido: 'Perez',
+      email: 'efpyi@example.com',
+      nota: 3,
+    },{
+      nombre: 'Raul',
+      apellido: 'Gonzalez',
+      email: 'asddd@nono.com',
+      nota: 7,
+    },{
+      nombre: 'Juan',
+      apellido: 'Perez',
+      email: 'eaeaea@aaaa.com',
+      nota: 10,
+    }
+  ];
 
   dataSource = new MatTableDataSource(this.alumnos);
 
   displayedColumns: string[] = ['alumno', 'iniciales', 'email', 'nota', 'eliminar'];
   
-  onSubmit(): void {
-    if(this.registerForm.valid){
-      this.alumnos.push(this.registerForm.value);
-      this.dataSource = new MatTableDataSource(this.alumnos);
-      this.registerForm.reset();
-    }
-  }
+  // onSubmit(): void {
+  //   if(this.registerForm.valid){
+  //     this.alumnos.push(this.registerForm.value);
+  //     this.dataSource = new MatTableDataSource(this.alumnos);
+  //     this.registerForm.reset();
+  //   }
+  // }
 
   eliminarAlumno(index: number) {
     if (index !== -1) {
@@ -70,8 +54,26 @@ export class FormulariosComponent {
       this.dataSource = new MatTableDataSource(this.alumnos);
     }
   }
+
+  constructor(private matDialog: MatDialog) {}
+
+  abrirABMAlumnos(): void {
+    const dialog = this.matDialog.open(AbmAlumnosComponent)
+    dialog.afterClosed().subscribe((valor:Alumno) => {
+      if (valor) {
+        this.dataSource.data = [
+          ...this.dataSource.data,
+          {
+            ...valor
+            // id: this.dataSource.data.length + 1,
+          }
+        ];
+      }
+    })
+  }
   
 }
+
 
 
 // Editar formulario
